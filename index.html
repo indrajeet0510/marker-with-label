@@ -1,0 +1,40 @@
+<html>
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+ <title>Label Overlay Example</title>
+ <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+ <script type="text/javascript" src="label.js"></script>
+
+</head>
+<body>
+ <div id="map_canvas" style="height: 200px; width: 300px;"></div>
+ <script type="text/javascript">
+  function initialize() {
+     var latLng = new google.maps.LatLng(40, -100);
+
+     var map = new google.maps.Map(document.getElementById('map_canvas'), {
+       zoom: 5,
+       center: latLng,
+       mapTypeId: google.maps.MapTypeId.ROADMAP
+     });
+
+     var marker = new google.maps.Marker({
+       position: latLng,
+       draggable: true,
+      // Assign Marker with label as label
+       label : "This is a marker label",
+       map: map
+     });
+
+     var label = new Label({
+       map: map
+     });
+
+     label.bindTo('position', marker, 'position');
+     label.bindTo('text', marker, 'label');
+    }
+    
+    initialize();
+ </script>
+</body>
+</html>
